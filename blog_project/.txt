@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+<!--it will allow us to use crispy filter to any of our forms-->
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section bg-white px-2 pt-2 pb-1">
+    <form action="" method="post" class="ml-1">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-3">Join Now</legend>
+     <!--UserCreationForm  object-->
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group mt-2">
+            <button class="btn btn-outline-primary" type="submit">Sign Up</button>
+        </div>
+    </form>
+
+   <div class="border-top mt-2 mb-1">
+      <small class="text-muted">Already have an account?<a href="#" class="ml-2">Sign In</a></small>
+   </div>
+</div>
+{% endblock %}
+

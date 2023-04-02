@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+<!--it will allow us to use crispy filter to any of our forms-->
+{% load crispy_forms_tags %}
+{% block content %}
+   <div class="content-section">
+       <div class="bg-white p-1 pl-2 rounded d-flex">
+           <img src="{{ user.user_profile.profile_pic.url }}" class="rounded-circle ml-1 my-1" alt="sample image"
+           style="width: 110px;height: 110px">
+           <div class="media-body">
+               <h3 class="ml-4 mt-2" style="color: #2f5065">{{ user.username }}</h3>
+               <p class="text-secondary ml-4 mt-3" style="font-family: Arial">{{ user.email }}</p>
+           </div>
+       </div>
+       <!-- FORMS HERE -->
+       <form method="post" class="bg-white rounded" enctype="multipart/form-data">
+           {% csrf_token %}
+           <fieldset class="form-group px-2 mb-0" >
+               <legend>Profile Info</legend>
+               {{ u_form|crispy }}
+               <style>
+                   margin-top: 5px
+               </style>
+               {{ p_form|crispy }}
+           </fieldset>
+           <div class="form-group mt-0 ml-2">
+               <button type="submit" class="btn btn-outline-primary mb-2 mt-0">Submit</button>
+           </div>
+       </form>
+   </div>
+{% endblock %}

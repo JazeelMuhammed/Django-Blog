@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="heading ml-4 mb-4 d-flex">
+      <h3 class="text-dark">Create a Blog.</h3><h3 class="text-secondary ml-1">It's free</h3>
+      <a href="{% url 'blog-create' %}" class="btn btn-warning btn-md ml-2">Get Started</a>
+</div>
+   {% for post in posts %}
+      <article class="single-content-section bg-white mt-2 py-1 rounded d-flex">
+         <img src="{{ post.author.user_profile.profile_pic.url }}" alt="default image"
+                 class="rounded-circle mb-2 ml-2 article-img" style="width: 80px; height: 80px">
+         <div class="content-body px-1 ml-2">
+            <div class="article-metadata my-1 mx-2">
+               <a href="{% url 'profile' %}" class="article-author text-primary">{{ post.author }}</a>
+               <small class="text-muted">{{ post.date_posted|date:"F d Y" }}</small>
+               <hr class="mt-1 mb-0">
+               <h2><a class="article-title" href="{% url 'blog-details' post.pk %}">{{ post.title }}</a></h2>
+            </div>
+         </div>
+      </article>
+   {% endfor %}
+{% endblock  %}
